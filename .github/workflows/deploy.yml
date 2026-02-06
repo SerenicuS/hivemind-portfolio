@@ -4,6 +4,12 @@ on:
   push:
     branches: [ "master" ]
 
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -16,8 +22,11 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
 
+
       - name: Install Dioxus CLI
-        run: cargo install dioxus-cli
+        uses: taiki-e/install-action@v2
+        with:
+          tool: dioxus-cli
 
       - name: Build
         run: |
