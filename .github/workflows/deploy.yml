@@ -20,8 +20,10 @@ jobs:
         run: cargo install dioxus-cli
 
       - name: Build
-
-        run: dx build --release --platform web
+        run: |
+          dx build --release --platform web
+          mkdir -p dist
+          cp -r target/dx/*/release/web/public/* dist/
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
