@@ -75,7 +75,7 @@ fn App() -> Element {
 
                 "whoami" => (
                     Content::Identity {
-                        image: "/hivemind-portfolio/my-pic.jpg".to_string(),
+                        image: "/hivemind-portfolio/my_pic.jpg".to_string(),
                         text: "/// ABOUT ME ///
 -------------------------
 > NAME:        Harold Karl Franze R. Alonsagay
