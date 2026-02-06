@@ -75,13 +75,14 @@ fn App() -> Element {
 
                 "whoami" => (
                     Content::Identity {
-                        image: "/my_pic.jpg".to_string(),
+                        image: "/hivemind-portfolio/my-pic.jpg".to_string(),
                         text: "/// ABOUT ME ///
 -------------------------
 > NAME:        Harold Karl Franze R. Alonsagay
 > LOCATION:    Davao City, Philippines
 > EDUCATION:   BSIT Student
 > FOCUS:       Systems Programming & Tooling
+> EMAIL:       alonsagayharold@gmail.com
 
 /// KERNEL PARAMETERS ///
 -------------------------
