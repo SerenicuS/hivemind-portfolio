@@ -21,7 +21,7 @@ jobs:
 
       - name: Build
 
-        run: dx build --release --public-url /hivemind-portfolio/
+        run: dx build --release
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v2

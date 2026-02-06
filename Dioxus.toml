@@ -6,6 +6,7 @@ asset_dir = "assets"
 
 [web.app]
 title = "Tauri + Dioxus App"
+base_path = "/hivemind-portfolio/"
 
 [web.watcher]
 reload_html = true
