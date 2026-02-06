@@ -148,9 +148,9 @@ fn App() -> Element {
                     Content::LinkList(vec![
                         // The text shown in terminal  |  The path to the file
                         // Green (Garden)
-                        ("01_GARDEN_OF_MANY.txt".to_string(),  "/poems/garden_of_many.html".to_string()),
+                        ("01_GARDEN_OF_MANY.txt".to_string(),  "poems/garden_of_many.html".to_string()),
                         // Pink (Sensuality)
-                        ("02_NAVIGATION_OF_SENSUALITY.txt".to_string(),  "/poems/navigation_of_sensuality.html".to_string()),
+                        ("02_NAVIGATION_OF_SENSUALITY.txt".to_string(),  "poems/navigation_of_sensuality.html".to_string()),
                     ]),
                     "SUCCESS"
                 ),
