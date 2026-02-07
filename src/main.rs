@@ -75,7 +75,7 @@ fn App() -> Element {
 
                 "whoami" => (
                     Content::Identity {
-                        image: "/hivemind-portfolio/my_pic.jpg".to_string(),
+                        image: asset!("/public/my_pic.jpg").to_string(),
                         text: "/// ABOUT ME ///
 -------------------------
 > NAME:        Harold Karl Franze R. Alonsagay
@@ -191,16 +191,15 @@ fn App() -> Element {
 
             div { style: "margin-bottom: 20px; color: #569cd6;",
                 pre {
-                    "
-   _____            _
-  / ____|          | |
- | (___  _   _ ___ | |_ ___ _ __ ___  ___
-  \\___ \\| | | / __|| __/ _ \\ '_ ` _ \\/ __|
-  ____) | |_| \\__ \\| ||  __/ | | | | \\__ \\
- |_____/ \\__, |___/ \\__\\___|_| |_| |_|___/
-          __/ |
-         |___/
-                    "
+                   r#"
+  _    _  _____ __      __ ______  __  __  _____  _   _  _____
+ | |  | ||_   _|\ \    / /|  ____||  \/  ||_   _|| \ | ||  __ \
+ | |__| |  | |   \ \  / / | |__   | \  / |  | |  |  \| || |  | |
+ |  __  |  | |    \ \/ /  |  __|  | |\/| |  | |  | . ` || |  | |
+ | |  | | _| |_    \  /   | |____ | |  | | _| |_ | |\  || |__| |
+ |_|  |_||_____|    \/    |______||_|  |_||_____||_| \_||_____/
+
+                    "#
                 }
                 div { style: "color: #808080; margin-top: 5px;", "HiveMind Kernel [v1.0.0] - x86_64-unknown-linux-gnu" }
                 div { style: "color: #608b4e;", "Type 'help' to initialize session..." }
