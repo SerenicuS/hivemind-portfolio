@@ -69,7 +69,7 @@ fn App() -> Element {
             // --- THE BRAIN ---
             let (new_content, new_status) = match clean_cmd.as_str() {
                 "help" => (
-                    Content::Text("AVAILABLE COMMANDS:\n-------------------\nwhoami       -> About Me\nskills       -> Tech Stack\nprojects     -> Projects\nsocials      -> Contact Info\nshowcase     -> Image Demo\nsoul         -> Poetry Collection\nclear        -> Clear Terminal".to_string()),
+                    Content::Text("AVAILABLE COMMANDS:\n-------------------\nwhoami       -> About Me\nskills       -> Tech Stack\nprojects     -> Projects\nsocials      -> Contact Info\nshowcase     -> Image Demo\nsoul         -> Poetry Collection\ncv           -> Download CV\nclear        -> Clear Terminal".to_string()),
                     "SYSTEM"
                 ),
 
@@ -100,7 +100,6 @@ fn App() -> Element {
 /// HARD SKILLS (TECH STACK) ///
 --------------------------------
 > Languages:   Java, C#, Rust, C, SQL, Python
-> Tools:       Github, RustRover, Clion, PyCharm
 
 /// SOFT SKILLS (HUMAN PROTOCOLS) ///
 -------------------------------------
@@ -135,6 +134,7 @@ fn App() -> Element {
                     "SUCCESS"
                 ),
 
+
                 "socials" => (
                     Content::LinkList(vec![
                         ("LINKEDIN PROFILE".to_string(), "https://www.linkedin.com/in/harold-karl-franze-alonsagay-95b1a82a5/".to_string()),
@@ -152,6 +152,13 @@ fn App() -> Element {
                         // Pink (Sensuality)
                         ("02_NAVIGATION_OF_SENSUALITY.txt".to_string(),  "poems/navigation_of_sensuality.html".to_string()),
                     ]),
+                    "SUCCESS"
+                ),
+                "cv" => (
+                    Content::Link {
+                        url: "https://example.com/path/to/your/cv.pdf".to_string(),
+                        label: "Download CV".to_string(),
+                    },
                     "SUCCESS"
                 ),
 
