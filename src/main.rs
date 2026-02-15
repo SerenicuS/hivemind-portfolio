@@ -88,7 +88,7 @@ fn App() -> Element {
 -------------------------
 > FOCUS:       Performance, Memory Safety, Tooling
 > PHILOSOPHY:  \"Poetry and Programming are the same; the only difference lies in who reads it.\"
-> OBJECTIVE:   I am aspiring to be a systems programmer
+> OBJECTIVE:   Forging tools in Rust & C.
                     "
                             .to_string()
                     },
