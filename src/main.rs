@@ -8,6 +8,7 @@ enum Content {
     Link { url: String, label: String },
     LinkList(Vec<(String, String)>),
     Identity { image: String, text: String },
+    ProjectsList(Vec<(String, String, String, String)>), // title, description, repo_url, image_url
 }
 
 #[derive(Clone, PartialEq)]
@@ -29,11 +30,13 @@ fn App() -> Element {
         background-color: #1e1e1e;
         color: #d4d4d4;
         font-family: 'Consolas', 'Monaco', monospace;
-        height: 100vh;
+        min-height: 100vh;
         width: 100vw;
         padding: 20px;
+        padding-bottom: 100px;
         box-sizing: border-box;
         overflow-y: auto;
+        overflow-x: hidden;
         font-size: 15px;
         line-height: 1.5;
     ";
@@ -66,6 +69,7 @@ fn App() -> Element {
             let current_cmd = input_val.read().clone();
             let clean_cmd = current_cmd.trim().to_lowercase();
 
+
             // --- THE BRAIN ---
             let (new_content, new_status) = match clean_cmd.as_str() {
                 "help" => (
@@ -84,7 +88,7 @@ fn App() -> Element {
 > FOCUS:       Systems Programming & Tooling
 > EMAIL:       alonsagayharold@gmail.com
 
-/// KERNEL PARAMETERS ///
+/// INTEREST AND FOCUS ///
 -------------------------
 > FOCUS:       Performance, Memory Safety, Tooling
 > PHILOSOPHY:  \"Poetry and Programming are the same; the only difference lies in who reads it.\"
@@ -126,10 +130,25 @@ fn App() -> Element {
                 ),
 
                 "projects" => (
-                    Content::LinkList(vec![
-                        ("MOMMYSHELL [Rust Bash Shell]".to_string(), "https://github.com/SerenicuS/MommySuite".to_string()),
-                        ("MOMMYLANG [Esolang -> C]".to_string(), "https://github.com/SerenicuS/MommySuite".to_string()),
-                        ("C_SHELL [Terminal in C]".to_string(), "https://github.com/SerenicuS/custom-shell".to_string()),
+                    Content::ProjectsList(vec![
+                        (
+                            "🔧 MOMMYSHELL [Rust Bash Shell]".to_string(),
+                            "A custom shell implementation in Rust\nFeatures: Command execution, piping, redirections\nFocus: Systems programming & process management".to_string(),
+                            "https://github.com/SerenicuS/MommySuite".to_string(),
+                            "https://media.giphy.com/media/l0HlDtKPoYJhFtVAQ/giphy.gif".to_string(),
+                        ),
+                        (
+                            "🗣️  MOMMYLANG [Esolang -> C Compiler]".to_string(),
+                            "Custom esoteric language compiler targeting C\nFeatures: Lexing, parsing, code generation\nFocus: Language design & compiler theory".to_string(),
+                            "https://github.com/SerenicuS/MommySuite".to_string(),
+                            "https://media.giphy.com/media/3o7TKsqVqHDC9V3CvC/giphy.gif".to_string(),
+                        ),
+                        (
+                            "💾 C_SHELL [Terminal in C]".to_string(),
+                            "Lightweight shell implementation in pure C\nFeatures: Built-in commands, file I/O, memory safety\nFocus: Low-level systems programming".to_string(),
+                            "https://github.com/SerenicuS/custom-shell".to_string(),
+                            "https://media.giphy.com/media/RJaUOmpBQKN7G/giphy.gif".to_string(),
+                        ),
                     ]),
                     "SUCCESS"
                 ),
@@ -155,10 +174,19 @@ fn App() -> Element {
                     "SUCCESS"
                 ),
                 "cv" => (
-                    Content::Link {
-                        url: "https://example.com/path/to/your/cv.pdf".to_string(),
-                        label: "Download CV".to_string(),
-                    },
+                    Content::Text("
+/// CV STATUS ///
+----------------
+> Coming soon! Currently being crafted with the same
+> precision I apply to my code.
+>
+> In the meantime, check out my projects and GitHub
+> for a real-world view of my capabilities.
+>
+> 📧 Email: alonsagayharold@gmail.com
+> 💼 LinkedIn: linkedin.com/in/harold-karl-franze-alonsagay-95b1a82a5/
+> 🐙 GitHub: github.com/SerenicuS
+                    ".to_string()),
                     "SUCCESS"
                 ),
 
@@ -181,11 +209,19 @@ fn App() -> Element {
                 status: new_status.to_string(),
             });
 
-
             input_val.set("".to_string());
 
+            // Scroll after DOM update with longer delay
             spawn(async move {
-                let _ = eval("window.scrollTo(0, document.body.scrollHeight);");
+                // Wait for DOM to fully render the new content
+                gloo_timers::future::sleep(std::time::Duration::from_millis(100)).await;
+                let _ = eval("
+                    setTimeout(() => {
+                        window.scrollTo(0, document.body.scrollHeight);
+                        const input = document.getElementById('terminal-input');
+                        if (input) input.focus();
+                    }, 0);
+                ");
             });
         }
     };
@@ -193,6 +229,8 @@ fn App() -> Element {
     rsx! {
         div {
             style: "{container_style}",
+            role: "main",
+            aria_label: "Interactive terminal portfolio of Harold Karl Franze R. Alonsagay - Systems Programmer",
             onclick: focus_input,
 
 
@@ -208,7 +246,7 @@ fn App() -> Element {
 
                     "#
                 }
-                div { style: "color: #808080; margin-top: 5px;", "HiveMind Kernel [v1.0.0] - x86_64-unknown-linux-gnu" }
+                div { style: "color: #808080; margin-top: 5px;", "HiveMind Kernel [v1.0.0] - understand & focus" }
                 div { style: "color: #608b4e;", "Type 'help' to initialize session..." }
             }
 
@@ -243,6 +281,7 @@ fn App() -> Element {
                                 div { style: "border-left: 3px solid #569cd6; padding-left: 15px; margin-top: 10px;",
                                     img {
                                         src: "{url}",
+                                        alt: "{caption}",
                                         style: "max-width: 100%; max-height: 300px; display: block; border-radius: 4px;"
                                     }
                                     div { style: "color: #569cd6; margin-top: 5px; font-size: 13px;", "// {caption}" }
@@ -272,6 +311,27 @@ fn App() -> Element {
                                         }
                                     }
                                 }
+                            },
+                            Content::ProjectsList(projects) => rsx! {
+                                div { style: "display: flex; flex-direction: column; gap: 20px; margin-top: 10px;",
+                                    for (title, description, repo_url, image_url) in projects {
+                                        div { style: "border-left: 3px solid #569cd6; padding-left: 15px; padding: 15px; background-color: #252526; border-radius: 4px;",
+                                            div { style: "color: #4ec9b0; font-weight: bold; margin-bottom: 8px;", "{title}" }
+                                            pre { style: "margin: 0 0 10px 0; white-space: pre-wrap; font-family: inherit; line-height: 1.4; color: #cccccc;", "{description}" }
+                                            img {
+                                                src: "{image_url}",
+                                                alt: "{title}",
+                                                style: "max-width: 100%; max-height: 200px; border-radius: 4px; margin-bottom: 10px; display: block;"
+                                            }
+                                            a {
+                                                href: "{repo_url}",
+                                                target: "_blank",
+                                                style: "color: #569cd6; text-decoration: none; border-bottom: 1px solid #569cd6; cursor: pointer; font-size: 13px;",
+                                                "🔗 View Repository"
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -294,6 +354,8 @@ fn App() -> Element {
                     autofocus: true,
                     spellcheck: "false",
                     autocomplete: "off",
+                    aria_label: "Terminal command input - Type 'help' for available commands",
+                    placeholder: "Type 'help' for commands...",
                 }
             }
         }
