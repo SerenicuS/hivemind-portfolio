@@ -170,6 +170,8 @@ fn App() -> Element {
                         ("01_GARDEN_OF_MANY.txt".to_string(),  "poems/garden_of_many.html".to_string()),
                         // Pink (Sensuality)
                         ("02_NAVIGATION_OF_SENSUALITY.txt".to_string(),  "poems/navigation_of_sensuality.html".to_string()),
+                        // Love (Mauve/Rose)
+                        ("03_FORMULA_OF_LOVE.txt".to_string(),  "poems/formula_of_love.html".to_string()),
                     ]),
                     "SUCCESS"
                 ),
