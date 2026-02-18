@@ -87,6 +87,7 @@ fn App() -> Element {
 > EDUCATION:   BSIT Student
 > FOCUS:       Systems Programming & Tooling
 > EMAIL:       alonsagayharold@gmail.com
+> SEEKING:     Internship / Junior Software Engineer
 
 /// INTEREST AND FOCUS ///
 -------------------------
