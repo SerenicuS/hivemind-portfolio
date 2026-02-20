@@ -150,6 +150,13 @@ fn App() -> Element {
                             "https://github.com/SerenicuS/custom-shell".to_string(),
                             "https://media.giphy.com/media/RJaUOmpBQKN7G/giphy.gif".to_string(),
                         ),
+                        (
+                            "📝 TEXT_EDITOR [Rust Terminal Editor]".to_string(),
+                            "Standalone Terminal-based text editor\nFeatures: Buffer management, file I/O, cursor tracking, line-based editing\nFocus: Text processing & terminal UI".to_string(),
+                            "https://github.com/SerenicuS/custom-text-editor".to_string(),
+                            "https://media.giphy.com/media/l0HlDtKPoYJhFtVAQ/giphy.gif".to_string(),
+                        ),
+
                     ]),
                     "SUCCESS"
                 ),
